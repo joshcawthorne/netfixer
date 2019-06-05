@@ -59,6 +59,7 @@ class ShowDetails extends Component {
         response.json().then(data => {
           this.setState({ relatedData: data });
           this.setState({ relatedLoaded: true });
+          window.scrollTo(0, 0);
         });
       });
     }
