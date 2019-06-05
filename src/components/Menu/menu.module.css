@@ -1,0 +1,41 @@
+.menuBar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 75px;
+    position: absolute;
+    top: 0;
+    z-index: 100;
+}
+
+.menuItem {
+    margin-left: 20px;
+    margin-right: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.menuLogo {
+    font-size: 30px;
+    font-weight: bold;
+    margin-right: 20px;
+    background-color: #000;
+    color: #fff;
+    height: 100%;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+a {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: #000;
+}
+
+.menuLogoLink {
+    height: 100%;
+}
