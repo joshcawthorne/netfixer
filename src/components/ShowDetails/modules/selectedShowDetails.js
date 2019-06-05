@@ -27,18 +27,13 @@ class selectedShowDetails extends Component {
       });
     });
   }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log("news props or new state", prevProps);
-  }
-
   render() {
     if (this.state.dataLoaded) {
-      let year = this.state.showData.first_air_date;
+      let year = this.props.showData.first_air_date;
       let seasonText = "Seasons";
       year = year.split("-");
       year = year[0];
-      if (this.state.showData.number_of_seasons === 1) {
+      if (this.props.showData.number_of_seasons === 1) {
         seasonText = "Season";
       }
       return (
@@ -54,17 +49,17 @@ class selectedShowDetails extends Component {
               <div className={styles.headerInfoContainer}>
                 <div className={styles.headerInfoInner}>
                   <div className={styles.showMetaData}>
-                    {this.state.showData.number_of_seasons}{" "}
+                    {this.props.showData.number_of_seasons}{" "}
                     <span>{seasonText}</span> /{" "}
-                    {this.state.showData.vote_average} / {year}
+                    {this.props.showData.vote_average} / {year}
                   </div>
                   <div className={styles.showNameContainer}>
                     <div className={styles.showName}>
-                      {this.state.showData.name}
+                      {this.props.showData.name}
                     </div>
                   </div>
                   <div className={styles.showOverview}>
-                    {this.state.showData.overview}
+                    {this.props.showData.overview}
                   </div>
                 </div>
               </div>
@@ -73,7 +68,7 @@ class selectedShowDetails extends Component {
               <img
                 src={
                   "https://image.tmdb.org/t/p/original/" +
-                  this.state.showData.backdrop_path
+                  this.props.showData.backdrop_path
                 }
                 alt="Poster"
                 className={styles.backgroundImg}
