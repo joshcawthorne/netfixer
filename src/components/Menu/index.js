@@ -12,6 +12,18 @@ class Menu extends Component {
     };
   }
 
+  componentWillMount() {
+    if (this.props.location.pathname !== "/") {
+      this.setState({
+        theme: "#fff"
+      });
+    } else {
+      this.setState({
+        theme: "#000"
+      });
+    }
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
       this.onRouteChanged();
