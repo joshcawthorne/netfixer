@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import styles from "./show.module.css";
+import styles from "./movie.module.css";
 import { withRouter } from "react-router-dom";
-import SelectedShowDetails from "./modules/selectedShowDetails";
-import RelatedShows from "./modules/relatedShows";
+import SelectedMovieDetails from "./modules/selectedMovieDetails";
+import RelatedMovies from "./modules/relatedMovies";
 
-class ShowDetails extends Component {
+class MovieDetails extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showData: [],
+      movieData: [],
       dataLoaded: false,
       relatedData: [],
       relatedLoaded: false
@@ -18,19 +18,19 @@ class ShowDetails extends Component {
 
   componentDidMount() {
     fetch(
-      "https://api.themoviedb.org/3/tv/" +
-        this.props.match.params.showId +
+      "https://api.themoviedb.org/3/movie/" +
+        this.props.match.params.movieId +
         "?api_key=0892b357978ad214e2798df9d45b276e"
     ).then(response => {
       response.json().then(data => {
-        this.setState({ showData: data });
+        this.setState({ movieData: data });
         this.setState({ dataLoaded: true });
       });
     });
     fetch(
-      "https://api.themoviedb.org/3/tv/" +
-        this.props.match.params.showId +
-        "/similar?api_key=0892b357978ad214e2798df9d45b276e"
+      "https://api.themoviedb.org/3/movie/" +
+        this.props.match.params.movieId +
+        "/recommendations?api_key=0892b357978ad214e2798df9d45b276e"
     ).then(response => {
       response.json().then(data => {
         this.setState({ relatedData: data });
@@ -41,21 +41,21 @@ class ShowDetails extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.match.params.showId !== this.props.match.params.showId) {
+    if (prevProps.match.params.movieId !== this.props.match.params.movieId) {
       fetch(
-        "https://api.themoviedb.org/3/tv/" +
-          this.props.match.params.showId +
+        "https://api.themoviedb.org/3/movie/" +
+          this.props.match.params.movieId +
           "?api_key=0892b357978ad214e2798df9d45b276e"
       ).then(response => {
         response.json().then(data => {
-          this.setState({ showData: data });
+          this.setState({ movieData: data });
           this.setState({ dataLoaded: true });
         });
       });
       fetch(
-        "https://api.themoviedb.org/3/tv/" +
-          this.props.match.params.showId +
-          "/similar?api_key=0892b357978ad214e2798df9d45b276e"
+        "https://api.themoviedb.org/3/movie/" +
+          this.props.match.params.movieId +
+          "/recommendations?api_key=0892b357978ad214e2798df9d45b276e"
       ).then(response => {
         response.json().then(data => {
           this.setState({ relatedData: data });
@@ -68,14 +68,14 @@ class ShowDetails extends Component {
 
   updateShow = () => {
     fetch(
-      "https://api.themoviedb.org/3/tv/" +
-        this.props.match.params.showId +
+      "https://api.themoviedb.org/3/movie/" +
+        this.props.match.params.movieId +
         "?api_key=0892b357978ad214e2798df9d45b276e"
     ).then(response => {
       response.json().then(data => {
-        this.setState({ showData: data });
+        this.setState({ movieData: data });
         this.setState({ dataLoaded: true });
-        this.props.history.push("/show/" + this.props.match.params.showId);
+        this.props.history.push("/movie/" + this.props.match.params.movieId);
       });
     });
   };
@@ -84,9 +84,9 @@ class ShowDetails extends Component {
     if (this.state.dataLoaded && this.state.relatedLoaded) {
       return (
         <div>
-          <SelectedShowDetails showData={this.state.showData} />
-          <RelatedShows
-            relatedShowData={this.state.relatedData}
+          <SelectedMovieDetails movieData={this.state.movieData} />
+          <RelatedMovies
+            relatedmovieData={this.state.relatedData}
             updateShow={this.updateShow}
           />
         </div>
@@ -97,4 +97,4 @@ class ShowDetails extends Component {
   }
 }
 
-export default withRouter(ShowDetails);
+export default withRouter(MovieDetails);

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styles from "./menu.module.css";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
+import Search from "../Search/index";
 
 class Menu extends Component {
   constructor(props) {
@@ -12,8 +13,12 @@ class Menu extends Component {
     };
   }
 
-  componentWillMount() {
-    if (this.props.location.pathname !== "/") {
+  componentDidMount() {
+    if (
+      this.props.location.pathname !== "/" &&
+      !this.props.location.pathname.includes("search") &&
+      this.props.location.pathname !== "/trending_movies"
+    ) {
       this.setState({
         theme: "#fff"
       });
@@ -31,7 +36,11 @@ class Menu extends Component {
   }
 
   onRouteChanged() {
-    if (this.props.location.pathname !== "/") {
+    if (
+      this.props.location.pathname !== "/" &&
+      !this.props.location.pathname.includes("search") &&
+      this.props.location.pathname !== "/trending_movies"
+    ) {
       this.setState({
         theme: "#fff"
       });
@@ -53,12 +62,12 @@ class Menu extends Component {
             Popular TV
           </div>
         </Link>
-        <div
-          className={styles.menuItem}
-          style={{ color: this.state.theme, cursor: "not-allowed" }}
-        >
-          Popular Movies
-        </div>
+        <Link to={"/trending_movies"}>
+          <div className={styles.menuItem} style={{ color: this.state.theme }}>
+            Popular Movies
+          </div>
+        </Link>
+        <Search />
       </div>
     );
   }

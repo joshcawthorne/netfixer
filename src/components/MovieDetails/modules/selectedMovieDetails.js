@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import styles from "../show.module.css";
+import styles from "../movie.module.css";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import arrow from "../assets/Arrow.svg";
 
-class selectedShowDetails extends Component {
+class selectedMovieDetails extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showData: [],
+      movieData: [],
 
       dataLoaded: false
     };
@@ -17,25 +17,21 @@ class selectedShowDetails extends Component {
 
   componentDidMount() {
     fetch(
-      "https://api.themoviedb.org/3/tv/" +
-        this.props.match.params.showId +
+      "https://api.themoviedb.org/3/movie/" +
+        this.props.match.params.movieId +
         "?api_key=0892b357978ad214e2798df9d45b276e"
     ).then(response => {
       response.json().then(data => {
-        this.setState({ showData: data });
+        this.setState({ movieData: data });
         this.setState({ dataLoaded: true });
       });
     });
   }
   render() {
     if (this.state.dataLoaded) {
-      let year = this.props.showData.first_air_date;
-      let seasonText = "Seasons";
+      let year = this.props.movieData.release_date;
       year = year.split("-");
       year = year[0];
-      if (this.props.showData.number_of_seasons === 1) {
-        seasonText = "Season";
-      }
       return (
         <div className={styles.showContainer}>
           <div
@@ -49,17 +45,15 @@ class selectedShowDetails extends Component {
               <div className={styles.headerInfoContainer}>
                 <div className={styles.headerInfoInner}>
                   <div className={styles.showMetaData}>
-                    {this.props.showData.number_of_seasons}{" "}
-                    <span>{seasonText}</span> /{" "}
-                    {this.props.showData.vote_average} / {year}
+                    {this.props.movieData.vote_average} / {year}
                   </div>
                   <div className={styles.showNameContainer}>
                     <div className={styles.showName}>
-                      {this.props.showData.name}
+                      {this.props.movieData.title}
                     </div>
                   </div>
                   <div className={styles.showOverview}>
-                    {this.props.showData.overview}
+                    {this.props.movieData.overview}
                   </div>
                 </div>
               </div>
@@ -68,7 +62,7 @@ class selectedShowDetails extends Component {
               <img
                 src={
                   "https://image.tmdb.org/t/p/original/" +
-                  this.props.showData.backdrop_path
+                  this.props.movieData.backdrop_path
                 }
                 alt="Poster"
                 className={styles.backgroundImg}
@@ -83,4 +77,4 @@ class selectedShowDetails extends Component {
   }
 }
 
-export default withRouter(selectedShowDetails);
+export default withRouter(selectedMovieDetails);
