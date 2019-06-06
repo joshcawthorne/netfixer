@@ -13,7 +13,7 @@ class reviews extends Component {
   }
 
   toggleExpand = () => {
-    if (this.state.expand === true) {
+    if (this.state.expand) {
       this.setState({
         expand: false
       });
