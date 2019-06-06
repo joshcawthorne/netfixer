@@ -1,6 +1,6 @@
 .searchModuleContainer {
     margin-top: 100px;
-    background-color: #eee;
+
 }
 
 .searchResultsContainer {
@@ -8,7 +8,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    background-color: #eee;
+
 
 }
 

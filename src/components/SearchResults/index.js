@@ -44,6 +44,7 @@ class SearchResults extends Component {
     if (this.state.dataLoaded) {
       return (
         <div className={styles.searchModuleContainer}>
+          <div className={styles.searchTitle}>Search Results: </div>
           <SearchOutput searchResults={this.state.searchResults} />
         </div>
       );
