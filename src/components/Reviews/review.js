@@ -3,7 +3,7 @@ import styles from "./reviews.module.css";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
-class reviews extends Component {
+class review extends Component {
   constructor(props) {
     super(props);
 
@@ -64,4 +64,4 @@ class reviews extends Component {
   }
 }
 
-export default withRouter(reviews);
+export default withRouter(review);

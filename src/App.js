@@ -9,6 +9,7 @@ import TrendingList from "./components/TrendingList";
 import TrendingMovieList from "./components/TrendingMovieList";
 import Show from "./components/ShowDetails";
 import Movie from "./components/MovieDetails";
+import Actor from "./components/Actor";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/show/:showId" component={Show} />
           <Route exact path="/movie/:movieId" component={Movie} />
         </AnimatedSwitch>
+        <Route exact path="/actor/:actorId" component={Actor} />
         <Route exact path="/search/:searchQuery" component={SearchResults} />
       </div>
     </Router>

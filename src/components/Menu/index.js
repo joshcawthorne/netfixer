@@ -20,7 +20,8 @@ class Menu extends Component {
     if (
       this.props.location.pathname !== "/" &&
       !this.props.location.pathname.includes("search") &&
-      this.props.location.pathname !== "/trending_movies"
+      this.props.location.pathname !== "/trending_movies" &&
+      !this.props.location.pathname.includes("actor")
     ) {
       this.setState({
         theme: "#fff",
@@ -57,7 +58,8 @@ class Menu extends Component {
     if (
       this.props.location.pathname !== "/" &&
       !this.props.location.pathname.includes("search") &&
-      this.props.location.pathname !== "/trending_movies"
+      this.props.location.pathname !== "/trending_movies" &&
+      !this.props.location.pathname.includes("actor")
     ) {
       this.setState({
         theme: "#fff",

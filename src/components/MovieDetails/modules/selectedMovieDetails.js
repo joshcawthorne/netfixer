@@ -3,6 +3,7 @@ import styles from "../movie.module.css";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import arrow from "../assets/Arrow.svg";
+import Details from "../../Details";
 
 class selectedMovieDetails extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class selectedMovieDetails extends Component {
       });
     });
   }
+
   render() {
     if (this.state.dataLoaded) {
       let year = this.props.movieData.release_date;
@@ -53,7 +55,10 @@ class selectedMovieDetails extends Component {
                     </div>
                   </div>
                   <div className={styles.showOverview}>
-                    {this.props.movieData.overview}
+                    <p>{this.props.movieData.overview}</p>
+                  </div>
+                  <div className={styles.extraDetailsContainer}>
+                    <Details details={this.props.extraDetails} />
                   </div>
                 </div>
               </div>

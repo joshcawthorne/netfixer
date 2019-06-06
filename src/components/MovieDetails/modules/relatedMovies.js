@@ -10,25 +10,31 @@ class relatedMovies extends Component {
       <div className={styles.relatedShows}>
         <div className={styles.relatedSectionTitle}>You Might Also Like</div>
         <div className={styles.relatedItemsContainer}>
-          {this.props.relatedmovieData.results.slice(0, 6).map(relatedItem => (
-            <Link to={"/movie/" + relatedItem.id}>
-              <div className={styles.relatedContainer}>
-                <div className={styles.relatedMetaDataContainer}>
-                  <div className={styles.relatedTitle}>{relatedItem.title}</div>
-                </div>
-                <div className={styles.relatedItemPoster}>
-                  <img
-                    src={
-                      "https://image.tmdb.org/t/p/w370_and_h556_bestv2/" +
-                      relatedItem.poster_path
-                    }
-                    alt="Related Poster"
-                    className={styles.relatedPoster}
-                  />
-                </div>
-              </div>
-            </Link>
-          ))}
+          <div className={styles.relatedItemsContainerInner}>
+            {this.props.relatedmovieData.results
+              .slice(0, 6)
+              .map(relatedItem => (
+                <Link to={"/movie/" + relatedItem.id}>
+                  <div className={styles.relatedContainer}>
+                    <div className={styles.relatedMetaDataContainer}>
+                      <div className={styles.relatedTitle}>
+                        {relatedItem.title}
+                      </div>
+                    </div>
+                    <div className={styles.relatedItemPoster}>
+                      <img
+                        src={
+                          "https://image.tmdb.org/t/p/w370_and_h556_bestv2/" +
+                          relatedItem.poster_path
+                        }
+                        alt="Related Poster"
+                        className={styles.relatedPoster}
+                      />
+                    </div>
+                  </div>
+                </Link>
+              ))}
+          </div>
         </div>
       </div>
     );

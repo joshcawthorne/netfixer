@@ -16,8 +16,11 @@ class MovieDetails extends Component {
       relatedLoaded: false,
       reviewData: [],
       reviewLoaded: false,
-      reviewDisplay: true,
-      relatedDisplay: false
+      reviewDisplay: false,
+      relatedDisplay: true,
+      detailsData: [],
+      detailsDisplay: false,
+      detailsLoaded: false
     };
   }
 
@@ -53,6 +56,16 @@ class MovieDetails extends Component {
         this.setState({ reviewLoaded: true });
       });
     });
+    fetch(
+      "https://api.themoviedb.org/3/movie/" +
+        this.props.match.params.movieId +
+        "/credits?api_key=0892b357978ad214e2798df9d45b276e"
+    ).then(response => {
+      response.json().then(data => {
+        this.setState({ detailsData: data });
+        this.setState({ detailsLoaded: true });
+      });
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -78,6 +91,7 @@ class MovieDetails extends Component {
           window.scrollTo({ top: 0, behavior: "smooth" });
         });
       });
+
       fetch(
         "https://api.themoviedb.org/3/movie/" +
           this.props.match.params.movieId +
@@ -88,40 +102,92 @@ class MovieDetails extends Component {
           this.setState({ reviewLoaded: true });
         });
       });
+
+      fetch(
+        "https://api.themoviedb.org/3/movie/" +
+          this.props.match.params.movieId +
+          "/credits?api_key=0892b357978ad214e2798df9d45b276e"
+      ).then(response => {
+        response.json().then(data => {
+          this.setState({ detailsData: data });
+          this.setState({ detailsLoaded: true });
+        });
+      });
     }
   }
 
   selectRelated = () => {
     this.setState({
       relatedDisplay: true,
-      reviewDisplay: false
+      reviewDisplay: false,
+      detailsDisplay: false
     });
   };
 
   selectReviews = () => {
     this.setState({
       reviewDisplay: true,
-      relatedDisplay: false
+      relatedDisplay: false,
+      detailsDisplay: false
+    });
+  };
+
+  selectDetails = () => {
+    this.setState({
+      reviewDisplay: false,
+      relatedDisplay: false,
+      detailsDisplay: true
     });
   };
 
   render() {
     const reviewDisplay = this.state.reviewDisplay;
     const relatedDisplay = this.state.relatedDisplay;
+    const detailsDisplay = this.state.detailsDisplay;
     if (
       this.state.dataLoaded &&
       this.state.relatedLoaded &&
-      this.state.reviewLoaded
+      this.state.reviewLoaded &&
+      this.state.detailsLoaded
     ) {
       return (
         <div className={styles.selectedItemDetailContainer}>
-          <SelectedMovieDetails movieData={this.state.movieData} />
+          <SelectedMovieDetails
+            movieData={this.state.movieData}
+            extraDetails={this.state.detailsData}
+          />
+
           <div className={styles.detailBoxSelector}>
-            <div className={styles.detailBoxItem} onClick={this.selectRelated}>
-              Related
+            <div
+              className={
+                detailsDisplay
+                  ? styles.detailBoxItemSelected
+                  : styles.detailBoxItem
+              }
+              onClick={this.selectDetails}
+            >
+              Details
             </div>
-            <div className={styles.detailBoxItem} onClick={this.selectReviews}>
+
+            <div
+              className={
+                reviewDisplay
+                  ? styles.detailBoxItemSelected
+                  : styles.detailBoxItem
+              }
+              onClick={this.selectReviews}
+            >
               Reviews
+            </div>
+            <div
+              className={
+                relatedDisplay
+                  ? styles.detailBoxItemSelected
+                  : styles.detailBoxItem
+              }
+              onClick={this.selectRelated}
+            >
+              Related
             </div>
           </div>
           <div className={styles.detailBoxContainer}>
@@ -145,6 +211,8 @@ class MovieDetails extends Component {
               ) : (
                 <div />
               )}
+
+              {detailsDisplay ? <div /> : <div />}
             </div>
           </div>
         </div>

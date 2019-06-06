@@ -38,8 +38,10 @@ class Search extends Component {
           name="search"
           value={this.state.search}
           onChange={this.handleInput}
+          className={styles.search}
+          placeholder="Search for a Film, Movie or Actor..."
+          autocomplete="off"
         />
-        <button>Submit</button>
       </form>
     );
   }

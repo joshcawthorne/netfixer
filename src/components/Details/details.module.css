@@ -1,0 +1,59 @@
+.detailsContainer {
+    text-align: left;
+}
+
+.actorsContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.actorContainer {
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.actorContainer:first-of-type {
+    margin-left: 0px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.actorImageContainer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 10px;
+    height: 110px;
+}
+
+.characterName {
+    color: #fff;
+}
+
+.actorName {
+    font-weight: bold;
+    color: #fff;
+}
+
+.actorImage {
+    height: 50px;
+    width: 50px;
+
+
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+}
+
+.actorImageContainer {}
+
+.detailsStarringTitle {
+    font-weight: bold;
+    color: #fff;
+    font-size: 20px;
+    margin-top: 50px;
+}
