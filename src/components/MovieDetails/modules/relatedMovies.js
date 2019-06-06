@@ -11,12 +11,7 @@ class relatedMovies extends Component {
         <div className={styles.relatedSectionTitle}>You Might Also Like</div>
         <div className={styles.relatedItemsContainer}>
           {this.props.relatedmovieData.results.slice(0, 6).map(relatedItem => (
-            <Link
-              to={"/movie/" + relatedItem.id}
-              onClick={() => {
-                this.props.updateShow(relatedItem.id);
-              }}
-            >
+            <Link to={"/movie/" + relatedItem.id}>
               <div className={styles.relatedContainer}>
                 <div className={styles.relatedMetaDataContainer}>
                   <div className={styles.relatedTitle}>{relatedItem.title}</div>

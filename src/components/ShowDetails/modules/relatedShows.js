@@ -10,7 +10,7 @@ class relatedShows extends Component {
       <div className={styles.relatedShows}>
         <div className={styles.relatedSectionTitle}>You Might Also Like</div>
         <div className={styles.relatedItemsContainer}>
-          {this.props.relatedShowData.results.slice(0, 6).map(relatedItem => (
+          {this.props.relatedData.results.slice(0, 6).map(relatedItem => (
             <Link
               to={"/show/" + relatedItem.id}
               onClick={() => {

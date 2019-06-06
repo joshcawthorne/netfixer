@@ -3,6 +3,7 @@ import styles from "./movie.module.css";
 import { withRouter } from "react-router-dom";
 import SelectedMovieDetails from "./modules/selectedMovieDetails";
 import RelatedMovies from "./modules/relatedMovies";
+import Reviews from "../Reviews/reviews";
 
 class MovieDetails extends Component {
   constructor(props) {
@@ -12,7 +13,11 @@ class MovieDetails extends Component {
       movieData: [],
       dataLoaded: false,
       relatedData: [],
-      relatedLoaded: false
+      relatedLoaded: false,
+      reviewData: [],
+      reviewLoaded: false,
+      reviewDisplay: true,
+      relatedDisplay: false
     };
   }
 
@@ -36,6 +41,16 @@ class MovieDetails extends Component {
         this.setState({ relatedData: data });
         this.setState({ relatedLoaded: true });
         window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    });
+    fetch(
+      "https://api.themoviedb.org/3/movie/" +
+        this.props.match.params.movieId +
+        "/reviews?api_key=0892b357978ad214e2798df9d45b276e"
+    ).then(response => {
+      response.json().then(data => {
+        this.setState({ reviewData: data });
+        this.setState({ reviewLoaded: true });
       });
     });
   }
@@ -63,32 +78,75 @@ class MovieDetails extends Component {
           window.scrollTo({ top: 0, behavior: "smooth" });
         });
       });
+      fetch(
+        "https://api.themoviedb.org/3/movie/" +
+          this.props.match.params.movieId +
+          "/reviews?api_key=0892b357978ad214e2798df9d45b276e"
+      ).then(response => {
+        response.json().then(data => {
+          this.setState({ reviewData: data });
+          this.setState({ reviewLoaded: true });
+        });
+      });
     }
   }
 
-  updateShow = () => {
-    fetch(
-      "https://api.themoviedb.org/3/movie/" +
-        this.props.match.params.movieId +
-        "?api_key=0892b357978ad214e2798df9d45b276e"
-    ).then(response => {
-      response.json().then(data => {
-        this.setState({ movieData: data });
-        this.setState({ dataLoaded: true });
-        this.props.history.push("/movie/" + this.props.match.params.movieId);
-      });
+  selectRelated = () => {
+    this.setState({
+      relatedDisplay: true,
+      reviewDisplay: false
+    });
+  };
+
+  selectReviews = () => {
+    this.setState({
+      reviewDisplay: true,
+      relatedDisplay: false
     });
   };
 
   render() {
-    if (this.state.dataLoaded && this.state.relatedLoaded) {
+    const reviewDisplay = this.state.reviewDisplay;
+    const relatedDisplay = this.state.relatedDisplay;
+    if (
+      this.state.dataLoaded &&
+      this.state.relatedLoaded &&
+      this.state.reviewLoaded
+    ) {
       return (
-        <div>
+        <div className={styles.selectedItemDetailContainer}>
           <SelectedMovieDetails movieData={this.state.movieData} />
-          <RelatedMovies
-            relatedmovieData={this.state.relatedData}
-            updateShow={this.updateShow}
-          />
+          <div className={styles.detailBoxSelector}>
+            <div className={styles.detailBoxItem} onClick={this.selectRelated}>
+              Related
+            </div>
+            <div className={styles.detailBoxItem} onClick={this.selectReviews}>
+              Reviews
+            </div>
+          </div>
+          <div className={styles.detailBoxContainer}>
+            <div className={styles.relatedOuterContainer}>
+              {reviewDisplay ? (
+                <div className={styles.reviewOuterContainer}>
+                  <Reviews
+                    reviewData={this.state.reviewData}
+                    title={this.state.movieData.title}
+                  />
+                </div>
+              ) : (
+                <div />
+              )}
+
+              {relatedDisplay ? (
+                <RelatedMovies
+                  relatedmovieData={this.state.relatedData}
+                  updateShow={this.updateShow}
+                />
+              ) : (
+                <div />
+              )}
+            </div>
+          </div>
         </div>
       );
     } else {

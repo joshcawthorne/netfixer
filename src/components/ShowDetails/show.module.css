@@ -158,3 +158,26 @@
     opacity: 0.5;
     border-radius: 10px;
 }
+
+.detailBoxSelector {
+    width: 75vw;
+    margin-left: 12.5%;
+    background-color: #fff;
+    height: 125px;
+    margin-top: -62.5px;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, .1);
+    box-shadow: 0 0 1px 1px #607d8b08,
+        1px 1px 10px #4341571a;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detailBoxItem {
+    font-weight: bold;
+    margin: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
