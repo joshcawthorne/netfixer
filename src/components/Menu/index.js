@@ -9,7 +9,10 @@ class Menu extends Component {
     super(props);
 
     this.state = {
-      theme: "#000"
+      theme: "#000",
+      logoTheme: "#000",
+      tvMenu: "#000",
+      filmMenu: "#000"
     };
   }
 
@@ -20,11 +23,26 @@ class Menu extends Component {
       this.props.location.pathname !== "/trending_movies"
     ) {
       this.setState({
-        theme: "#fff"
+        theme: "#fff",
+        tvMenu: "#fff",
+        filmMenu: "#fff",
+        logoTheme: "rgba(255, 255, 255, 0)"
       });
     } else {
       this.setState({
-        theme: "#000"
+        theme: "#000",
+        logoTheme: "#000"
+      });
+    }
+    if (this.props.location.pathname === "/") {
+      this.setState({
+        tvMenu: "rgb(128, 128, 128)",
+        filmMenu: "#000"
+      });
+    } else if (this.props.location.pathname === "/trending_movies") {
+      this.setState({
+        filmMenu: "rgb(128, 128, 128)",
+        tvMenu: "#000"
       });
     }
   }
@@ -42,11 +60,26 @@ class Menu extends Component {
       this.props.location.pathname !== "/trending_movies"
     ) {
       this.setState({
-        theme: "#fff"
+        theme: "#fff",
+        tvMenu: "#fff",
+        filmMenu: "#fff",
+        logoTheme: "rgba(255, 255, 255, 0)"
       });
     } else {
       this.setState({
-        theme: "#000"
+        theme: "#000",
+        logoTheme: "#000"
+      });
+    }
+    if (this.props.location.pathname === "/") {
+      this.setState({
+        tvMenu: "rgb(128, 128, 128)",
+        filmMenu: "#000"
+      });
+    } else if (this.props.location.pathname === "/trending_movies") {
+      this.setState({
+        filmMenu: "rgb(128, 128, 128)",
+        tvMenu: "#000"
       });
     }
   }
@@ -55,15 +88,23 @@ class Menu extends Component {
     return (
       <div className={styles.menuBar}>
         <Link to={"/"} className={styles.menuLogoLink}>
-          <div className={styles.menuLogo}>Netfixer</div>
+          <div
+            className={styles.menuLogo}
+            style={{ backgroundColor: this.state.logoTheme }}
+          >
+            Netfixer
+          </div>
         </Link>
         <Link to={"/"}>
-          <div className={styles.menuItem} style={{ color: this.state.theme }}>
+          <div className={styles.menuItem} style={{ color: this.state.tvMenu }}>
             Popular TV
           </div>
         </Link>
         <Link to={"/trending_movies"}>
-          <div className={styles.menuItem} style={{ color: this.state.theme }}>
+          <div
+            className={styles.menuItem}
+            style={{ color: this.state.filmMenu }}
+          >
             Popular Movies
           </div>
         </Link>
