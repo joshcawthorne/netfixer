@@ -32,7 +32,7 @@ function App() {
             component={MediaDetails}
           />
         </AnimatedSwitch>
-        <Route exact path="/actor/:actorId" component={Actor} />
+        <Route exact path="/person/:actorId" component={Actor} />
         <Route exact path="/search/:searchQuery" component={SearchResults} />
       </div>
     </Router>

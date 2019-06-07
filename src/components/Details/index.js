@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styles from "./details.module.css";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
-import Actor from "./modules/actor";
+import Person from "./modules/person";
 
 class Details extends Component {
   constructor(props) {
@@ -26,8 +26,8 @@ class Details extends Component {
       <div className={styles.detailsContainer}>
         <div className={styles.detailsStarringTitle}>Starring:</div>
         <div className={styles.actorsContainer}>
-          {this.props.details.cast.slice(0, 5).map(actor => (
-            <Actor actor={actor} />
+          {this.props.details.cast.slice(0, 5).map(person => (
+            <Person person={person} />
           ))}
         </div>
       </div>

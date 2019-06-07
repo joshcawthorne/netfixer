@@ -9,7 +9,7 @@ class review extends Component {
 
     this.state = {
       backgroundImage: `url(https://image.tmdb.org/t/p/w500/${
-        this.props.actor.profile_path
+        this.props.person.profile_path
       })`
     };
   }
@@ -17,14 +17,14 @@ class review extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.showId !== this.props.match.params.showId) {
       this.setState({
-        backgroundImage: this.props.actor.profile_path
+        backgroundImage: this.props.person.profile_path
       });
     }
   }
 
   render() {
     return (
-      <Link to={`/actor/${this.props.actor.id}`}>
+      <Link to={`/person/${this.props.person.id}`}>
         <div className={styles.actorContainer}>
           <div className={styles.actorImageContainer}>
             <div
