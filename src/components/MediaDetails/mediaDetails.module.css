@@ -5,7 +5,7 @@
 }
 
 .selectedItemDetailContainer {
-    background-color: #edebf1;
+    background-color: #fbfbfb;
     height: 100%;
 }
 
@@ -44,8 +44,9 @@
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
+    width: 75vw;
+
 }
 
 .headerInfoContainer {}
@@ -61,25 +62,25 @@
 }
 
 .showName {
-    color: #000;
-    background-color: #fff;
-    margin-bottom: 20px;
-    font-size: 4rem;
+    color: #fff;
+    margin-bottom: 0px;
+    margin-left: -5px;
+    font-size: 5.5rem;
     font-weight: bold;
     text-align: left;
     display: inline-block;
     font-family: "Proxima Nova Bold";
-    padding: 15px;
-    padding-left: 15px;
-    padding-right: 25px;
+    letter-spacing: 1.1px;
+    width: 75vw;
 }
 
 .showOverview {
     color: #fff;
     width: 700px;
-    line-height: 1.3;
+    line-height: 1.5;
     letter-spacing: 1.3px;
     text-align: left;
+    margin-top: 30px;
 }
 
 .back {
@@ -95,19 +96,75 @@
     color: #fff;
     margin-bottom: 10px;
     text-align: left;
-    font-family: 'Roboto Mono',
-        monospace;
+}
+
+.statsContainer {
+    display: flex;
+    align-items: center;
+}
+
+.genreContainer {
+    display: flex;
+    align-items: center;
+}
+
+.genreItem {
+    font-family: "Proxima Nova Bold";
+    font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.ratingContainer {
+    font-size: 18px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 6px;
+    color: #000;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Proxima Nova Bold";
+    margin-top: 5px;
+
+    margin-right: 10px;
+}
+
+.yearContainer {
+    font-size: 18px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 6px;
+    color: #000;
+    width: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Proxima Nova Bold";
+    margin-top: 5px;
 }
 
 .relatedSectionTitle {
     font-size: 40px;
-    color: #000;
+    color: rgb(46, 46, 46);
     font-weight: bold;
     text-align: left;
     margin-left: 10%;
     width: 90;
     margin-top: 50px;
     margin-bottom: 25px;
+    font-family: "Proxima Nova";
+}
+
+.titleMediaType {
+    font-family: "Proxima Nova bold";
+    color: #000;
+}
+
+.mediaTitle {
+    font-family: "Proxima Nova bold";
+    color: #000;
 }
 
 .relatedItemsContainer {
@@ -167,11 +224,10 @@
 .detailBoxSelector {
     width: 75vw;
     margin-left: 12.5%;
-    background-color: #fff;
+    background-color: #1c1b23;
     height: 125px;
     margin-top: -62.5px;
     position: relative;
-    border: 1px solid rgba(255, 255, 255, .1);
     box-shadow: 0 0 1px 1px #607d8b08,
         1px 1px 10px #4341571a;
     border-radius: 5px;
@@ -185,7 +241,8 @@
     margin: 10px;
     font-size: 30px;
     cursor: pointer;
-    color: #565656;
+    font-family: "Proxima Nova Bold";
+    color: rgb(139, 139, 139);
 }
 
 .detailBoxItemSelected {
@@ -193,8 +250,9 @@
     margin: 10px;
     font-size: 30px;
     cursor: pointer;
-
-
+    color: #fff;
+    font-weight: 800;
+    font-family: "Proxima Nova Bold";
 }
 
 .relatedItemsContainerInner {
@@ -214,10 +272,11 @@
 @media only screen and (max-width: 966px) {
     .showOverview {
         color: #fff;
-        width: 80vw;
-        line-height: 1.3;
+        width: 700px;
+        line-height: 1.5;
         letter-spacing: 1.3px;
         text-align: left;
+        margin-top: 30px;
     }
 
     .detailBoxItem {
@@ -247,5 +306,11 @@
 
     .starringTitle {
         margin-top: 30px;
+    }
+}
+
+@media only screen and (max-height: 999px) {
+    .headerContainer {
+        height: 100vh;
     }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./actor.module.css";
+import styles from "./person.module.css";
 import { withRouter } from "react-router-dom";
 
 class Actor extends Component {

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import styles from "./mediaDetails.module.css";
 import { withRouter } from "react-router-dom";
-import SelectedMovieDetails from "./modules/selectedMediaDetails";
-import RelatedMovies from "./modules/relatedMedia";
+import SelectedMediaDetails from "./modules/selectedMediaDetails";
+import RelatedMedia from "./modules/relatedMedia";
+import RelatedToActor from "./modules/relatedToActor";
 import Reviews from "../Reviews/reviews";
 
 class MovieDetails extends Component {
@@ -26,13 +27,6 @@ class MovieDetails extends Component {
   }
 
   componentDidMount() {
-    console.log(
-      "https://api.themoviedb.org/3/" +
-        this.props.match.params.mediaType +
-        "/" +
-        this.props.match.params.itemId +
-        "?api_key=0892b357978ad214e2798df9d45b276e"
-    );
     fetch(
       "https://api.themoviedb.org/3/" +
         this.props.match.params.mediaType +
@@ -195,23 +189,12 @@ class MovieDetails extends Component {
     ) {
       return (
         <div className={styles.selectedItemDetailContainer}>
-          <SelectedMovieDetails
+          <SelectedMediaDetails
             mediaData={this.state.mediaData}
             extraDetails={this.state.detailsData}
           />
 
           <div className={styles.detailBoxSelector}>
-            <div
-              className={
-                detailsDisplay
-                  ? styles.detailBoxItemSelected
-                  : styles.detailBoxItem
-              }
-              onClick={this.selectDetails}
-            >
-              Details
-            </div>
-
             <div
               className={
                 reviewDisplay
@@ -247,10 +230,25 @@ class MovieDetails extends Component {
               )}
 
               {relatedDisplay ? (
-                <RelatedMovies
-                  relatedmediaData={this.state.relatedData}
-                  updateShow={this.updateShow}
-                />
+                <div className={styles.relatedMediaOuterContainer}>
+                  <RelatedMedia
+                    relatedmediaData={this.state.relatedData}
+                    updateShow={this.updateShow}
+                    title={this.state.mediaData.title}
+                    showName={this.state.mediaData.name}
+                  />
+
+                  {this.state.detailsData.cast.slice(0, 3).map(person => (
+                    <RelatedToActor
+                      relatedmediaData={this.state.relatedData}
+                      person={person}
+                      mediaType={this.state.mediaType}
+                      updateShow={this.updateShow}
+                      title={this.state.mediaData.title}
+                      showName={this.state.mediaData.name}
+                    />
+                  ))}
+                </div>
               ) : (
                 <div />
               )}

@@ -9,10 +9,10 @@ class reviews extends Component {
   render() {
     if (this.props.reviewData.results.length > 0) {
       return (
-        <div className={styles.reviews}>
-          <div className={styles.leftAlignedReviewInfo}>
+        <div className={styles.reviewsModuleContainer}>
+          <div className={styles.reviewsTitleContainer}>
             <div className={styles.reviewsTitle}>
-              {this.props.title} Reviews:
+              {this.props.title} Reviews
             </div>
           </div>
           <div className={styles.reviewsContainer}>

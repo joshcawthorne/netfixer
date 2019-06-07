@@ -9,7 +9,7 @@ import TrendingList from "./components/TrendingList";
 import TrendingMovieList from "./components/TrendingMovieList";
 
 import MediaDetails from "./components/MediaDetails";
-import Actor from "./components/Actor";
+import Actor from "./components/Person";
 
 function App() {
   return (

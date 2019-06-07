@@ -17,12 +17,7 @@ class Menu extends Component {
   }
 
   componentDidMount() {
-    if (
-      this.props.location.pathname !== "/" &&
-      !this.props.location.pathname.includes("search") &&
-      this.props.location.pathname !== "/trending_movies" &&
-      !this.props.location.pathname.includes("actor")
-    ) {
+    if (this.props.location.pathname.includes("/media/")) {
       this.setState({
         theme: "#fff",
         tvMenu: "#fff",
@@ -32,9 +27,12 @@ class Menu extends Component {
     } else {
       this.setState({
         theme: "#000",
-        logoTheme: "#000"
+        logoTheme: "#000",
+        tvMenu: "#000",
+        filmMenu: "#000"
       });
     }
+
     if (this.props.location.pathname === "/") {
       this.setState({
         tvMenu: "rgb(128, 128, 128)",
@@ -55,12 +53,7 @@ class Menu extends Component {
   }
 
   onRouteChanged() {
-    if (
-      this.props.location.pathname !== "/" &&
-      !this.props.location.pathname.includes("search") &&
-      this.props.location.pathname !== "/trending_movies" &&
-      !this.props.location.pathname.includes("actor")
-    ) {
+    if (this.props.location.pathname.includes("/media/")) {
       this.setState({
         theme: "#fff",
         tvMenu: "#fff",
@@ -70,9 +63,12 @@ class Menu extends Component {
     } else {
       this.setState({
         theme: "#000",
-        logoTheme: "#000"
+        logoTheme: "#000",
+        tvMenu: "#000",
+        filmMenu: "#000"
       });
     }
+
     if (this.props.location.pathname === "/") {
       this.setState({
         tvMenu: "rgb(128, 128, 128)",

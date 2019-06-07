@@ -7,7 +7,8 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: ""
+      search: "",
+      theme: "#000"
     };
 
     this.submitHandler = this.submitHandler.bind(this);
@@ -30,7 +31,43 @@ class Search extends Component {
     });
   }
 
+  componentDidMount() {
+    if (this.props.location.pathname.includes("/media/")) {
+      this.setState({
+        theme: "#fff"
+      });
+    } else {
+      this.setState({
+        theme: "#000"
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      this.onRouteChanged();
+    }
+  }
+
+  onRouteChanged() {
+    if (this.props.location.pathname.includes("/media/")) {
+      this.setState({
+        theme: "#fff"
+      });
+    } else {
+      this.setState({
+        theme: "#000"
+      });
+    }
+  }
+
   render() {
+    let mediaPage;
+    if (this.props.location.pathname.includes("/media/")) {
+      mediaPage = true;
+    } else {
+      mediaPage = false;
+    }
     return (
       <form onSubmit={this.submitHandler}>
         <input
@@ -38,8 +75,12 @@ class Search extends Component {
           name="search"
           value={this.state.search}
           onChange={this.handleInput}
-          className={styles.search}
-          placeholder="Search for a Film, Movie or Actor..."
+          className={mediaPage ? styles.searchLight : styles.searchDark}
+          style={{
+            borderColor: this.state.theme,
+            color: this.state.theme
+          }}
+          placeholder="Search..."
           autocomplete="off"
         />
       </form>

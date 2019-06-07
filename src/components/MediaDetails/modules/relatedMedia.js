@@ -8,16 +8,26 @@ class relatedMovies extends Component {
   render() {
     let mediaTypeMovie;
     let mediaType = "movie";
+    let mediaTypePretty = "Movies";
     if (this.props.match.params.mediaType === "movie") {
       mediaTypeMovie = true;
       mediaType = "movie";
+      mediaTypePretty = "Movies";
     } else {
       mediaTypeMovie = false;
       mediaType = "tv";
+      mediaTypePretty = "TV Shows";
     }
     return (
       <div className={styles.relatedShows}>
-        <div className={styles.relatedSectionTitle}>You Might Also Like</div>
+        <div className={styles.relatedSectionTitle}>
+          More <span className={styles.titleMediaType}>{mediaTypePretty}</span>{" "}
+          like{" "}
+          <span className={styles.mediaTitle}>
+            {" "}
+            {mediaTypeMovie ? this.props.title : this.props.showName}
+          </span>
+        </div>
         <div className={styles.relatedItemsContainer}>
           <div className={styles.relatedItemsContainerInner}>
             {this.props.relatedmediaData.results
