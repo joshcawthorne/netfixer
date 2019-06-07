@@ -1,0 +1,65 @@
+@font-face {
+    font-family: "Proxima Nova Bold";
+    src: url("./Proxima Nova Bold.eot");
+    src: local("☺"),
+        url("./Proxima Nova Bold.woff") format("woff"),
+        url("./Proxima Nova Bold.ttf") format("truetype"),
+        url("./Proxima Nova Bold.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Proxima Nova Bold It";
+    src: url("./Proxima Nova Bold It.eot");
+    src: local("☺"),
+        url("./Proxima Nova Bold It.svg") format("svg"),
+        url("./Proxima Nova Bold It.ttf") format("truetype"),
+        url("./Proxima Nova Bold It.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Proxima Nova Light";
+    src: url("./Proxima Nova Light.eot");
+    src: local("☺"),
+        url("./Proxima Nova Light.svg") format("svg"),
+        url("./Proxima Nova Light.ttf") format("truetype"),
+        url("./Proxima Nova Light.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Proxima Nova Light It";
+    src: url("./Proxima Nova Light It.eot");
+    src: local("☺"),
+        url("./Proxima Nova Light It.svg") format("svg"),
+        url("./Proxima Nova Light It.ttf") format("truetype"),
+        url("./Proxima Nova Light It.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("./Proxima Nova Reg.eot");
+    src: local("☺"),
+        url("./Proxima Nova Reg.svg") format("svg"),
+        url("./Proxima Nova Reg.ttf") format("truetype"),
+        url("./Proxima Nova Reg.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Proxima Nova Reg It";
+    src: url("./Proxima Nova Reg It.eot");
+    src: local("☺"),
+        url("./Proxima Nova Reg It.svg") format("svg"),
+        url("./Proxima Nova Reg It.ttf") format("truetype"),
+        url("./Proxima Nova Reg It.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}

@@ -7,8 +7,8 @@ import Menu from "./components/Menu";
 import SearchResults from "./components/SearchResults";
 import TrendingList from "./components/TrendingList";
 import TrendingMovieList from "./components/TrendingMovieList";
-import Show from "./components/ShowDetails";
-import Movie from "./components/MovieDetails";
+
+import MediaDetails from "./components/MediaDetails";
 import Actor from "./components/Actor";
 
 function App() {
@@ -25,8 +25,12 @@ function App() {
         >
           <Route exact path="/" component={TrendingList} />
           <Route exact path="/trending_movies" component={TrendingMovieList} />
-          <Route exact path="/show/:showId" component={Show} />
-          <Route exact path="/movie/:movieId" component={Movie} />
+
+          <Route
+            exact
+            path="/view/:mediaType/:itemId"
+            component={MediaDetails}
+          />
         </AnimatedSwitch>
         <Route exact path="/actor/:actorId" component={Actor} />
         <Route exact path="/search/:searchQuery" component={SearchResults} />

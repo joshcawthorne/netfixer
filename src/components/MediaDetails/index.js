@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import styles from "./movie.module.css";
+import styles from "./mediaDetails.module.css";
 import { withRouter } from "react-router-dom";
-import SelectedMovieDetails from "./modules/selectedMovieDetails";
-import RelatedMovies from "./modules/relatedMovies";
+import SelectedMovieDetails from "./modules/selectedMediaDetails";
+import RelatedMovies from "./modules/relatedMedia";
 import Reviews from "../Reviews/reviews";
 
 class MovieDetails extends Component {
@@ -10,7 +10,7 @@ class MovieDetails extends Component {
     super(props);
 
     this.state = {
-      movieData: [],
+      mediaData: [],
       dataLoaded: false,
       relatedData: [],
       relatedLoaded: false,
@@ -20,24 +20,36 @@ class MovieDetails extends Component {
       relatedDisplay: true,
       detailsData: [],
       detailsDisplay: false,
-      detailsLoaded: false
+      detailsLoaded: false,
+      mediaType: "movie"
     };
   }
 
   componentDidMount() {
+    console.log(
+      "https://api.themoviedb.org/3/" +
+        this.props.match.params.mediaType +
+        "/" +
+        this.props.match.params.itemId +
+        "?api_key=0892b357978ad214e2798df9d45b276e"
+    );
     fetch(
-      "https://api.themoviedb.org/3/movie/" +
-        this.props.match.params.movieId +
+      "https://api.themoviedb.org/3/" +
+        this.props.match.params.mediaType +
+        "/" +
+        this.props.match.params.itemId +
         "?api_key=0892b357978ad214e2798df9d45b276e"
     ).then(response => {
       response.json().then(data => {
-        this.setState({ movieData: data });
+        this.setState({ mediaData: data });
         this.setState({ dataLoaded: true });
       });
     });
     fetch(
-      "https://api.themoviedb.org/3/movie/" +
-        this.props.match.params.movieId +
+      "https://api.themoviedb.org/3/" +
+        this.props.match.params.mediaType +
+        "/" +
+        this.props.match.params.itemId +
         "/recommendations?api_key=0892b357978ad214e2798df9d45b276e"
     ).then(response => {
       response.json().then(data => {
@@ -47,8 +59,10 @@ class MovieDetails extends Component {
       });
     });
     fetch(
-      "https://api.themoviedb.org/3/movie/" +
-        this.props.match.params.movieId +
+      "https://api.themoviedb.org/3/" +
+        this.props.match.params.mediaType +
+        "/" +
+        this.props.match.params.itemId +
         "/reviews?api_key=0892b357978ad214e2798df9d45b276e"
     ).then(response => {
       response.json().then(data => {
@@ -57,8 +71,10 @@ class MovieDetails extends Component {
       });
     });
     fetch(
-      "https://api.themoviedb.org/3/movie/" +
-        this.props.match.params.movieId +
+      "https://api.themoviedb.org/3/" +
+        this.props.match.params.mediaType +
+        "/" +
+        this.props.match.params.itemId +
         "/credits?api_key=0892b357978ad214e2798df9d45b276e"
     ).then(response => {
       response.json().then(data => {
@@ -66,23 +82,37 @@ class MovieDetails extends Component {
         this.setState({ detailsLoaded: true });
       });
     });
+
+    if (this.props.match.params.mediaType === "movie") {
+      this.setState({
+        mediaType: "movie"
+      });
+    } else {
+      this.setState({
+        mediaType: "tv"
+      });
+    }
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.match.params.movieId !== this.props.match.params.movieId) {
+    if (prevProps.match.params.itemId !== this.props.match.params.itemId) {
       fetch(
-        "https://api.themoviedb.org/3/movie/" +
-          this.props.match.params.movieId +
+        "https://api.themoviedb.org/3/" +
+          this.props.match.params.mediaType +
+          "/" +
+          this.props.match.params.itemId +
           "?api_key=0892b357978ad214e2798df9d45b276e"
       ).then(response => {
         response.json().then(data => {
-          this.setState({ movieData: data });
+          this.setState({ mediaData: data });
           this.setState({ dataLoaded: true });
         });
       });
       fetch(
-        "https://api.themoviedb.org/3/movie/" +
-          this.props.match.params.movieId +
+        "https://api.themoviedb.org/3/" +
+          this.props.match.params.mediaType +
+          "/" +
+          this.props.match.params.itemId +
           "/recommendations?api_key=0892b357978ad214e2798df9d45b276e"
       ).then(response => {
         response.json().then(data => {
@@ -93,8 +123,10 @@ class MovieDetails extends Component {
       });
 
       fetch(
-        "https://api.themoviedb.org/3/movie/" +
-          this.props.match.params.movieId +
+        "https://api.themoviedb.org/3/" +
+          this.props.match.params.mediaType +
+          "/" +
+          this.props.match.params.itemId +
           "/reviews?api_key=0892b357978ad214e2798df9d45b276e"
       ).then(response => {
         response.json().then(data => {
@@ -104,8 +136,10 @@ class MovieDetails extends Component {
       });
 
       fetch(
-        "https://api.themoviedb.org/3/movie/" +
-          this.props.match.params.movieId +
+        "https://api.themoviedb.org/3/" +
+          this.props.match.params.mediaType +
+          "/" +
+          this.props.match.params.itemId +
           "/credits?api_key=0892b357978ad214e2798df9d45b276e"
       ).then(response => {
         response.json().then(data => {
@@ -113,6 +147,15 @@ class MovieDetails extends Component {
           this.setState({ detailsLoaded: true });
         });
       });
+      if (this.props.match.params.mediaType === "movie") {
+        this.setState({
+          mediaType: "movie"
+        });
+      } else {
+        this.setState({
+          mediaType: "tv"
+        });
+      }
     }
   }
 
@@ -153,7 +196,7 @@ class MovieDetails extends Component {
       return (
         <div className={styles.selectedItemDetailContainer}>
           <SelectedMovieDetails
-            movieData={this.state.movieData}
+            mediaData={this.state.mediaData}
             extraDetails={this.state.detailsData}
           />
 
@@ -196,7 +239,7 @@ class MovieDetails extends Component {
                 <div className={styles.reviewOuterContainer}>
                   <Reviews
                     reviewData={this.state.reviewData}
-                    title={this.state.movieData.title}
+                    title={this.state.mediaData.title}
                   />
                 </div>
               ) : (
@@ -205,7 +248,7 @@ class MovieDetails extends Component {
 
               {relatedDisplay ? (
                 <RelatedMovies
-                  relatedmovieData={this.state.relatedData}
+                  relatedmediaData={this.state.relatedData}
                   updateShow={this.updateShow}
                 />
               ) : (
