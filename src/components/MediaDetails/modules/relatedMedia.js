@@ -23,7 +23,7 @@ class relatedMovies extends Component {
             {this.props.relatedmediaData.results
               .slice(0, 6)
               .map(relatedItem => (
-                <Link to={"/view/" + mediaType + "/" + relatedItem.id}>
+                <Link to={"/media/" + mediaType + "/" + relatedItem.id}>
                   <div className={styles.relatedContainer}>
                     <div className={styles.relatedMetaDataContainer}>
                       <div className={styles.relatedTitle}>

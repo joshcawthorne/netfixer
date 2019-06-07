@@ -28,7 +28,7 @@ function App() {
 
           <Route
             exact
-            path="/view/:mediaType/:itemId"
+            path="/media/:mediaType/:itemId"
             component={MediaDetails}
           />
         </AnimatedSwitch>

@@ -12,7 +12,7 @@ class SearchOutput extends Component {
           if (search.name) {
             if (search.poster_path) {
               return (
-                <Link to={"/show/" + search.id}>
+                <Link to={"/media/" + search.media_type + "/" + search.id}>
                   <div
                     className={styles.searchCard}
                     key={search.id}
@@ -34,7 +34,7 @@ class SearchOutput extends Component {
               );
             } else if (search.backdrop_path) {
               return (
-                <Link to={"/show/" + search.id}>
+                <Link to={"/media/" + search.media_type + "/" + search.id}>
                   <div
                     className={styles.searchCard}
                     key={search.id}
@@ -56,7 +56,7 @@ class SearchOutput extends Component {
               );
             } else {
               return (
-                <Link to={"/show/" + search.id}>
+                <Link to={"/media/" + search.media_type + "/" + search.id}>
                   <div
                     className={styles.searchCard}
                     key={search.id}
@@ -77,7 +77,7 @@ class SearchOutput extends Component {
           } else if (search.title) {
             if (search.poster_path) {
               return (
-                <Link to={"/movie/" + search.id}>
+                <Link to={"/media/" + search.media_type + "/" + search.id}>
                   <div
                     className={styles.searchCard}
                     key={search.id}
@@ -99,7 +99,7 @@ class SearchOutput extends Component {
               );
             } else if (search.backdrop_path) {
               return (
-                <Link to={"/movie/" + search.id}>
+                <Link to={"/media/" + search.media_type + "/" + search.id}>
                   <div
                     className={styles.searchCard}
                     key={search.id}
@@ -121,7 +121,7 @@ class SearchOutput extends Component {
               );
             } else {
               return (
-                <Link to={"/movie/" + search.id}>
+                <Link to={"/media/" + search.media_type + "/" + search.id}>
                   <div
                     className={styles.searchCard}
                     key={search.id}

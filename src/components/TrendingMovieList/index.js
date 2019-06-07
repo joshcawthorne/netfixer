@@ -28,7 +28,7 @@ class TrendingMovieList extends Component {
         <div className={styles.trendingTitle}>Popular Films</div>
         <div className={styles.trendingCardsContainer}>
           {this.state.trends.map(trend => (
-            <Link to={"/view/movie/" + trend.id}>
+            <Link to={"/media/movie/" + trend.id}>
               <div className={styles.trendingCard} key={trend.id} id={trend.id}>
                 <img
                   src={
